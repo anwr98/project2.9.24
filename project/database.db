@@ -1,0 +1,41 @@
+
+CREATE TABLE `comments` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `tutor_id` int NOT NULL,
+  `comment` text NOT NULL,
+  `rating` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `tutor_id` (`tutor_id`),
+  CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`tutor_id`) REFERENCES `tutors` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `contact_us` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `course` varchar(255) NOT NULL,
+  `note` text NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `courses` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `course_name` varchar(255) NOT NULL,
+  `image_path` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `tutors` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `phone` varchar(15) NOT NULL,
+  `course` varchar(50) NOT NULL,
+  `notes` text,
+  `profilePic` varchar(255) DEFAULT NULL,
+  `role` varchar(10) DEFAULT 'tutor',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci

@@ -92,7 +92,7 @@
                 <li><a href="index.jsp#about">About Us</a></li>
                 <li><a href="index.jsp#courses">Our Courses</a></li>
                 <li><a href="index.jsp#contact">Contact Us</a></li>
-                <li><a href="login.html">login/a></li>
+                <li><a href="login.html">login</a></li>
             </ul>
         </nav>
     </header>

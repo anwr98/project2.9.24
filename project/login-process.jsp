@@ -10,7 +10,8 @@
     String role = "";
 
     if (phone == null || password == null) {
-        out.println("Error: Phone number and password are required.");
+        session.setAttribute("loginError", "Phone number and password are required.");
+        response.sendRedirect("login.jsp");
         return;
     }
 
@@ -36,6 +37,7 @@
         }
 
         if (isValidUser) {
+            session.removeAttribute("loginError"); // Clear any previous error
             session.setAttribute("tutorName", tutorName);
             session.setAttribute("tutorId", tutorId);
             session.setAttribute("role", role);
@@ -46,14 +48,17 @@
                 response.sendRedirect("tutor-dashboard.jsp");
             }
         } else {
-            out.println("Invalid phone number or password. Please try again.");
+            session.setAttribute("loginError", "Invalid phone number or password.");
+            response.sendRedirect("login.jsp");
         }
 
     } catch (SQLException e) {
         e.printStackTrace();
-        out.println("SQL Error: " + e.getMessage());
+        session.setAttribute("loginError", "SQL Error: " + e.getMessage());
+        response.sendRedirect("login.jsp");
     } catch (ClassNotFoundException e) {
         e.printStackTrace();
-        out.println("Error: MySQL Driver not found.");
+        session.setAttribute("loginError", "Error: MySQL Driver not found.");
+        response.sendRedirect("login.jsp");
     }
 %>
